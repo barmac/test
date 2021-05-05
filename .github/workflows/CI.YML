@@ -1,0 +1,22 @@
+name: RELEASE
+on:
+  push
+jobs:
+  Check:
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, macos-10.15, windows-latest ]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Windows
+        if: ${{ runner.os == 'Windows' }}
+        run: echo "hello $OSTYPE"
+      - name: Linux
+        if: ${{ runner.os == 'Linux' }}
+        run: echo "hello $OSTYPE"
+      - name: MacOS
+        if: ${{ runner.os == 'macOS' }}
+        run: echo "hello $OSTYPE"
+      - name: post
+        run: echo "$OSTYPE"
