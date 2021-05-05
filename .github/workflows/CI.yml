@@ -21,6 +21,7 @@ jobs:
         if: ${{ runner.os == 'macOS' }}
         run: echo "hello $OSTYPE" && echo $(ls)
   Post:
+    runs-on: ubuntu-latest
     steps:
       - name: post
         run: echo $(ls)
