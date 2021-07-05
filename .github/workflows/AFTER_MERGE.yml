@@ -11,16 +11,14 @@ jobs:
       contents: write
 
     steps:
-    - name: Checkout main
-      uses: actions/checkout@v1
-      with:
-        ref: main
     - name: Checkout develop
-      uses: actions/checkout@v1
+      uses: actions/checkout@v2
       with:
         ref: develop
-        clean: false
+        fetch-depth: 0
     - name: Merge master to develop and push
       run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
         git merge --no-edit main
         git push
