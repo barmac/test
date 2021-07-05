@@ -13,8 +13,9 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+      with:
+        ref: develop
     - name: Merge master to develop and push
       run: |
-        git checkout develop
         git merge --no-edit main
         git push
