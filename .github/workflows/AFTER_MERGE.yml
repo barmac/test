@@ -5,18 +5,22 @@ on:
     - "main"
 
 jobs:
-  Create_pull_request:
+  Merge_master_to_develop:
     runs-on: ubuntu-latest
     permissions:
       contents: write
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
+    - name: Checkout main
+      uses: actions/checkout@v1
+      with:
+        ref: main
+    - name: Checkout develop
+      uses: actions/checkout@v1
       with:
         ref: develop
+        clean: false
     - name: Merge master to develop and push
       run: |
-        git fetch origin main
-        git merge --no-edit origin/main
+        git merge --no-edit main
         git push
