@@ -18,7 +18,7 @@ jobs:
       with:
         source_branch: ""                                   # If blank, default: triggered branch
         destination_branch: "develop"                       # If blank, default: master
-        pr_title: "Pull ${{ github.ref }} to master"        # Title of pull request
-        pr_body: "This pulls ${{ github.ref }} to master."  # Full markdown support, requires pr_title to be set
+        pr_title: "Merge master to develop"                 # Title of pull request
+        pr_body: "This pulls ${{ github.ref }} to develop." # Full markdown support, requires pr_title to be set
         pr_reviewer: "barmac"                # Comma-separated list (no spaces)
         github_token: ${{ secrets.GITHUB_TOKEN }}
