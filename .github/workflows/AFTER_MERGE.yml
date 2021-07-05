@@ -20,5 +20,5 @@ jobs:
       run: |
         git config user.name github-actions
         git config user.email github-actions@github.com
-        git merge --no-edit origin/main
+        git merge -m 'Merge master to develop' --no-edit origin/main
         git push
