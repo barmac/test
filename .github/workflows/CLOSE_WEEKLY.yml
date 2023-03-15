@@ -22,7 +22,7 @@ jobs:
           --state=open --json=url \
           --jq='.[].url')" >> "$GITHUB_OUTPUT"
       - name: Close issue
-        if: steps.search-issue.outputs.ISSUE_URL != ""
+        if: steps.search-issue.outputs.ISSUE_URL != ''
         run: gh issue close "${{ steps.search-issue.outputs.ISSUE_URL }}"
       - run: echo "No issue to close ¯\_(ツ)_/¯"
-        if: steps.search-issue.outputs.ISSUE_URL == ""
+        if: steps.search-issue.outputs.ISSUE_URL == ''
