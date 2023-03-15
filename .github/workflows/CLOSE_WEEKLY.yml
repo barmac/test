@@ -1,0 +1,27 @@
+name: Close weekly
+
+on:
+  schedule:
+  - cron: '0 12 * * WED'
+
+jobs:
+  close_issue:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Search for old open weekly issue
+        id: search-issue
+        run: |
+          YESTERDAY="$(date -v +1d '+%Y-%m-%d')"
+          echo "ISSUE_URL=$(gh search issues \
+          --repo ${{ github.repository }} \
+          --label=weekly \
+          --created "<$YESTERDAY" \
+          --state=open --json=url \
+          --jq='.[].url')" >> "$GITHUB_OUTPUT"
+      - name: Close issue
+        if: steps.search-issue.outputs.ISSUE_URL != ""
+        run: gh issue close "${{ steps.search-issue.outputs.ISSUE_URL }}"
+      - run: echo "No issue to close ¯\_(ツ)_/¯"
+        if: steps.search-issue.outputs.ISSUE_URL == ""
