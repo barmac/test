@@ -3,6 +3,7 @@ name: Close weekly
 on:
   schedule:
   - cron: '0/10 * * * WED'
+  workflow_dispatch:
 
 jobs:
   close_issue:
