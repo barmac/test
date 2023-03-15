@@ -2,7 +2,7 @@ name: Close weekly
 
 on:
   schedule:
-  - cron: '42,43 9 * * WED'
+  - cron: '44,45 8 * * WED'
 
 jobs:
   close_issue:
