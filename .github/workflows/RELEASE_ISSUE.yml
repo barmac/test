@@ -18,5 +18,7 @@ jobs:
     needs: createReleaseIssue
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ needs.createReleaseIssue.outputs.assignee }}
-      - run: echo ${{ fromJson(needs.createReleaseIssue.outputs.issue) }}
+      - run: |
+          echo "assignee:" ${{ needs.createReleaseIssue.outputs.assignee }}
+      - run: |
+          echo "issue:" ${{ fromJson(needs.createReleaseIssue.outputs.issue).number }}
