@@ -19,6 +19,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo "assignee:" ${{ needs.createReleaseIssue.outputs.assignee }}
+          echo "assignee:" ${{ needs.createReleaseIssue.outputs[0].assignee }}
       - run: |
-          echo "issue:" ${{ fromJson(needs.createReleaseIssue.outputs.issue).number }}
+          echo "issue:" ${{ fromJson(needs.createReleaseIssue.outputs[0].issue).number }}
