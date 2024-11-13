@@ -5,10 +5,14 @@ on:
 jobs:
   createReleaseIssue:
     runs-on: ubuntu-latest
+    outputs:
+      assignee: ${{ steps.create.outputs.assignee }}
+      issue: ${{ steps.create.outputs.issue }}
     steps:
     - if: contains(github.event.issue.labels.*.name, 'release')
       name: Create new Issue
       uses: bpmn-io/actions/release-issue@latest
+      id: create
       with:
         template-path: 'template.md'
         package-path: 'package.json'
@@ -19,6 +23,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo "assignee:" ${{ needs.createReleaseIssue.steps[0].outputs.assignee }}
+          echo "assignee:" ${{ needs.createReleaseIssue.outputs.assignee }}
       - run: |
-          echo "issue:" ${{ fromJson(needs.createReleaseIssue.steps[0].outputs.issue).number }}
+          echo "issue:" ${{ fromJson(needs.createReleaseIssue.outputs.issue).number }}
