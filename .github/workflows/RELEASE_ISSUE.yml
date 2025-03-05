@@ -5,12 +5,14 @@ on:
 jobs:
   createReleaseIssue:
     runs-on: ubuntu-latest
+    if: |
+      contains(github.event.issue.labels.*.name, 'release') &&
+      github.event.action == 'closed'
     outputs:
       assignee: ${{ steps.create.outputs.assignee }}
       issue: ${{ steps.create.outputs.issue }}
     steps:
-    - if: contains(github.event.issue.labels.*.name, 'release')
-      name: Create new Issue
+    - name: Create new Issue
       uses: bpmn-io/actions/release-issue@latest
       id: create
       with:
