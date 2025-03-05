@@ -20,7 +20,9 @@ jobs:
         labels: 'release'
   readOutputs:
     needs: createReleaseIssue
-    if: always()
+    if: |
+      always() &&
+      contains(github.event.issue.labels.*.name, 'release')
     runs-on: ubuntu-latest
     steps:
       - run: |
