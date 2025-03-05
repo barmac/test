@@ -26,6 +26,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo "assignee:" ${{ needs.createReleaseIssue.outputs.assignee || github.event.issue.assignee }}
+          echo "assignee:" ${{ needs.createReleaseIssue.outputs.assignee || github.event.issue.assignee.login }}
       - run: |
           echo "issue number:" ${{ needs.createReleaseIssue.outputs.issue && fromJson(needs.createReleaseIssue.outputs.issue).number || github.event.issue.number }}
