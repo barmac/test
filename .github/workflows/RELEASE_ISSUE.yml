@@ -1,7 +1,7 @@
 name: Release Issue
 on:
   issues:
-    types: [closed]
+    types: [closed, assigned]
 jobs:
   createReleaseIssue:
     runs-on: ubuntu-latest
@@ -20,9 +20,10 @@ jobs:
         labels: 'release'
   readOutputs:
     needs: createReleaseIssue
+    if: always()
     runs-on: ubuntu-latest
     steps:
       - run: |
           echo "assignee:" ${{ needs.createReleaseIssue.outputs.assignee }}
       - run: |
-          echo "issue:" ${{ fromJson(needs.createReleaseIssue.outputs.issue).number }}
+          echo "issue number:" ${{ needs.createReleaseIssue.outputs.issue && fromJson(needs.createReleaseIssue.outputs.issue).number || github.event.issue.number }}
