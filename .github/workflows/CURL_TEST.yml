@@ -6,4 +6,5 @@ jobs:
     runs-on: 'ubuntu-latest'
     steps:
     - name: call
-      run: curl --fail-with-body -d'{"test":1}' https://example.com
+      run: |
+        curl --fail-with-body -d'{"test":1}' https://example.com
