@@ -1,0 +1,8 @@
+name: Make a call
+on:
+  workflow_dispatch:
+jobs:
+  call:
+    steps:
+    - name: call
+      run: curl --fail-with-body -d'{"test":1}' https://example.com
