@@ -1,0 +1,17 @@
+name: Weekly
+on:
+  issues:
+    types: [closed]
+jobs:
+  createIssue:
+    runs-on: ubuntu-latest
+    if: contains(github.event.issue.labels.*.name, 'weekly')
+    steps:
+      - name: Create new Issue
+        uses: bpmn-io/actions/weekly-notes@latest
+        with:
+          title-template: "Weekly - Week {{weekNumber}}/{{year}}"
+          template-path: ".github/ISSUE_TEMPLATE/WEEKLY_NOTE.md"
+          moderators-path: ".github/workflows/moderators.json"
+          roles: "moderator"
+          token: ${{ steps.app-token.outputs.token }}
