@@ -6,12 +6,18 @@ jobs:
   createIssue:
     runs-on: ubuntu-latest
     if: contains(github.event.issue.labels.*.name, 'weekly')
+    permissions:
+      contents: read
+      issues: write
     steps:
       - name: Create new Issue
         uses: bpmn-io/actions/weekly-notes@latest
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           title-template: "Weekly - Week {{weekNumber}}/{{year}}"
           template-path: ".github/ISSUE_TEMPLATE/WEEKLY_NOTE.md"
           moderators-path: ".github/workflows/moderators.json"
           roles: "moderator"
+          community-worker: false
           token: ${{ steps.app-token.outputs.token }}
