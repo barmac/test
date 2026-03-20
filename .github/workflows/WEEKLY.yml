@@ -11,7 +11,7 @@ jobs:
       issues: write
     steps:
       - name: Create new Issue
-        uses: bpmn-io/actions/weekly-notes@latest
+        uses: bpmn-io/actions/weekly-notes@housekeeping-20-03-26
         with:
           title-template: "Weekly - Week {{week}}/{{year}}"
           template-path: ".github/ISSUE_TEMPLATE/WEEKLY_NOTE.md"
