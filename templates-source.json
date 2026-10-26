@@ -2,7 +2,7 @@
   "com.barmac.my-template": [
     {
       "version": 1,
-      "ref": "https://templates.example.com/my-template-1.json",
+      "ref": "https://raw.githubusercontent.com/barmac/test/288fbd83e969629083a8012c2c81688c58c2dc4a/templates/template.json",
       "engine": {
         "camunda": ">=8.0.0"
       }
