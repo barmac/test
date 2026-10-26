@@ -1,0 +1,15 @@
+{
+  "$schema": "https://unpkg.com/@camunda/zeebe-element-templates-json-schema/resources/schema.json",
+  "id": "barmac.test.template",
+  "name": "Barmac test template",
+  "description": "Blank element template",
+  "version": 1,
+  "category": {
+    "id": "templates",
+    "name": "Templates"
+  },
+  "appliesTo": [
+    "bpmn:Task"
+  ],
+  "properties": []
+}
