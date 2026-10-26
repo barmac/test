@@ -1,0 +1,11 @@
+{
+  "com.barmac.my-template": [
+    {
+      "version": 1,
+      "ref": "https://templates.example.com/my-template-1.json",
+      "engine": {
+        "camunda": ">=8.0.0"
+      }
+    }
+  ]
+}
