@@ -1,24 +1,12 @@
-name: AFTER_MERGE
+name: Sync branches
 on:
   push:
-    branches:
-    - "main"
-
+    branches: [ main ]
+permissions:
+  contents: read
+  pull-requests: write
 jobs:
-  Merge_master_to_develop:
+  merge:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
     steps:
-    - name: Checkout develop
-      uses: actions/checkout@v2
-      with:
-        ref: develop
-        fetch-depth: 0
-    - name: Merge master to develop and push
-      run: |
-        git config user.name github-actions
-        git config user.email github-actions@github.com
-        git merge -m 'Merge master to develop' --no-edit origin/main
-        git push
+      - uses: bpmn-io/actions/sync-branches@9f3103344c59131636a12bd9240df61a6ca4e980
